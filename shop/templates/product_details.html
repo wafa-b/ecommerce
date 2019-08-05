@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} {{ product.name }} {% endblock %}
+
+{% block content %}
+
+<section>
+  <div class="container cards">
+    <div class="row">
+
+      <div class="col-sm-12 col-lg-12 col-md-12">
+        <!--<div class="card">-->
+          <!--<img src='{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}' class="card-img-top" alt="...">-->
+          <!--<div class="card-body">-->
+            <!--<h3> {{ product.name }}</h3>-->
+
+            <!--<h4 class="card-title">{{ product.category }}</h4>-->
+            <!--<p class="card-text"> {{ product.price }}</p>-->
+            <!--<p class="card-text"> {{ product.stock }}</p>-->
+            <!--<p class="card-text"> {{ product.created_at }}</p>-->
+            <!--<p class="card-text"> {{ product.description }}</p>-->
+          <!--</div>-->
+
+          <!--<div class="card-footer">-->
+            <!--<a href="#" class="btn btn-block order-button" tabindex="-1" role="button" aria-disabled="true">Order Now</a>-->
+
+          <!--</div>-->
+
+        <!--</div>-->
+
+        <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4 col-sm-4 col-lg-4">
+
+      <img src='{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}' class="card-img" alt="...">
+    </div>
+    <div class="col-md-8 col-sm-8 col-lg-8">
+      <div class="card-body">
+        <h4 class="card-title">{{ product.name }}</h4>
+        <h5 class="card-title">Category: {{ product.category }}</h5>
+        <p class="card-text">Price: {{ product.price }} $</p>
+        <p class="card-text">Description: {{ product.description|linebreaks }} </p>
+        <p class="card-text"><small class="text-muted"> Created at: {{ product.created_at }}</small></p>
+
+      </div>
+
+
+          <form method="post" action="{% url 'cart_add' product.id %}">
+			{% csrf_token %}
+			{{cart_product_form}}
+			<input  class="btn order-button" type="submit"value="Add to cart">
+		</form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

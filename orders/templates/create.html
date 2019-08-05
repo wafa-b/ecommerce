@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_ %}
+	CheckOut
+{% endblock title_ %}
+
+{% block content %}
+  <section>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-12 col-lg-12 col-md-12">
+		<h1 class="pds">CheckOut</h1>
+		<div class="order-info">
+			<h3>Your order:</h3>
+			<ul>
+				{% for item in cart %}
+					<li>{{item.quantity}} x {{item.product.name}} <span>${{item.total_price}}</span></li>
+				{% endfor %}
+				{% if cart.coupon %}
+					<li>
+						"{{cart.coupon.code}}" ({{cart.coupon.discount}}% off)
+						<span> - ${{cart.get_discount|floatformat:"2"}}</span>
+					</li>
+				{% endif %}
+			</ul><br>
+			<hr>
+			<p>Total: ${{cart.get_total_price}}</p>
+			<br>
+			<h5>Total After Discount: ${{cart.get_total_price_after_discount}}</h5>
+<br>
+		</div>
+
+		<form method="post" action="." novalidate>
+			{% csrf_token %}
+
+			{% include 'includes/form.html' %}
+
+			<button type="submit">Place order</button>
+		</form>
+		  </div>
+	</div>
+  </div>
+  </section>
+{% endblock %}

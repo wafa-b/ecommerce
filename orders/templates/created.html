@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_ %}
+	CheckOut
+{% endblock title_ %}
+
+{% block content %}
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-12 col-lg-12 col-md-12">
+    <div style="height:20px;"></div>
+	<div class="center-div">
+	<h1>Thank you</h1>
+	<p>your order has been successfully completed. your order number is <strong>{{order.id}}</strong></p>
+	</div>
+
+      </div>
+	</div>
+  </div>
+{% endblock %}
